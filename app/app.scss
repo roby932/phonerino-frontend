@@ -2,10 +2,21 @@
 $fa-font-path: "~font-awesome/fonts/";
 @import "~font-awesome/scss/font-awesome";
 
+// Theme Variables
+@import "./style/variables";
+
 // Bootstrap
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
+// Bootstrap Utilities
+// @import "./style/utilities";
 
+// Font Awesome Checkbox
+// @import "./style/fa-checkbox";
 
+// Toggle Switch
+// @import "./style/toggle-switch";
+
+// Theme Styles
+// @import "./style/theme";

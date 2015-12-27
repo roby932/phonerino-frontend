@@ -11,9 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025172759) do
+ActiveRecord::Schema.define(version: 20151227151334) do
 
   create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "phone"
     t.string   "address"
     t.string   "country"
@@ -23,13 +24,21 @@ ActiveRecord::Schema.define(version: 20151025172759) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
+
   create_table "auctions", force: :cascade do |t|
+    t.integer  "phone_id"
+    t.integer  "user_id"
     t.integer  "offered_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
+  add_index "auctions", ["phone_id"], name: "index_auctions_on_phone_id"
+  add_index "auctions", ["user_id"], name: "index_auctions_on_user_id"
+
   create_table "details", force: :cascade do |t|
+    t.integer  "phone_id"
     t.string   "brand"
     t.string   "model"
     t.integer  "camera"
@@ -38,6 +47,8 @@ ActiveRecord::Schema.define(version: 20151025172759) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  add_index "details", ["phone_id"], name: "index_details_on_phone_id"
 
   create_table "phones", force: :cascade do |t|
     t.string   "name"
@@ -52,6 +63,7 @@ ActiveRecord::Schema.define(version: 20151025172759) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "auth_token"
     t.string   "email"
     t.string   "password"
     t.integer  "rating"

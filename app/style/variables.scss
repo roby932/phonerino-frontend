@@ -1,0 +1,29 @@
+//= Colors
+$gray-base: #000;
+$brand-primary: rgb(0,159,218);
+$brand-secondary: rgb(0,51,141);
+
+$gray-lighter: #e5e5e5;
+$gray-lightest: #f5f5f5;
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$btn-default-color: $brand-primary;
+
+//= Navbar
+$navbar-height: 36px;
+$navbar-inverse-color: rgba(#fff,.6);
+$navbar-inverse-bg: $brand-primary;
+$navbar-inverse-border: $brand-primary;
+$navbar-inverse-link-color: rgba(#fff,.8);
+
+$navbar-inverse-link-hover-bg: rgba(#fff,.1);
+$navbar-inverse-link-active-bg: rgba(#fff,.2);
+
+$navbar-inverse-brand-color: $navbar-inverse-link-color;
+$navbar-inverse-brand-hover-color: $navbar-inverse-link-color;
+
+//= Forms
+$input-border: $gray-lighter;
+$btn-default-border: $gray-lighter;
+
+//= Awesome Bootstrap Checkbox
+$fa-var-check: "\f00c";

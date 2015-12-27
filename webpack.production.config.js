@@ -3,14 +3,13 @@ var webpack = require('webpack');
 var ROOT_PATH = path.resolve(__dirname);
 var node_modules_dir = path.resolve(__dirname, 'node_modules');
 var ExtractPlugin = require('extract-text-webpack-plugin');
+var CleanPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval',
   context: __dirname + "/app",
   entry: {
     javascript: path.resolve(__dirname, './app/main.js'),
     html: "./index.html",
-    // vendors: ['jquery', 'react', 'react-dom', 'bluebird', 'bootstrap-sass', 'immutable', 'invariant', 'moment', 'ramda', 'react-redux', 'redux-actions', 'redux-thunk', 'xr']
   },
 
   output: {
@@ -34,7 +33,7 @@ module.exports = {
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
-      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
+      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
       { test: /\.js$/, exclude: /node_modules/, loaders: ["react-hot", "babel-loader"] },
       { test: /\.html$/, loader: "file?name=[name].[ext]" }
     ]
@@ -43,7 +42,15 @@ module.exports = {
   plugins: [
     // new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
     // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.main.js', Infinity),
+    new webpack.optimize.DedupePlugin(),
     new ExtractPlugin('main.css'),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new CleanPlugin('dist'),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
     new webpack.DefinePlugin({
       __CLIENT__: true,

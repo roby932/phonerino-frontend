@@ -55,7 +55,10 @@ Rails.application.routes.draw do
   #   end
 
   namespace :api do
-    resources :user
+    resources :user, defaults: { format: 'json' }
+    resources :address, defaults: { format: 'json' }
+    resources :auction, defaults: { format: 'json' }
+    resources :phone, defaults: { format: 'json' }
   end
 
 end
