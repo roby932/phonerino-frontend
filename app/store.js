@@ -7,7 +7,9 @@ import app from './ducks/app';
 import router from './ducks/router';
 
 let initialState = Immutable({
-  app: { },
+  app: {
+    page:'login',
+  },
   router: { }
 });
 

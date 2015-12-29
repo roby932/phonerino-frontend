@@ -38,6 +38,7 @@ ReactDOM.render((
     <Provider store={store}>
       <ApplicationContainer/>
     </Provider>
-    {renderDevTools()}
+    {//renderDevTools()
+    }
   </div>
 ), document.getElementById('app-container'));

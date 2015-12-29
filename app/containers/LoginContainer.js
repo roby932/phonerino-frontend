@@ -1,23 +1,27 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import Application from '../components/Application';
-import {navigateTo} from '../ducks/app';
 import { bindActionCreators } from 'redux';
+
+import Login from '../components/Login';
+import {login} from '../ducks/app';
+
 
 function mapStateToProps(state) {
   return {
-    page: state.app.page
+    page: state.router.currentPath,
+    loading: state.app.loginLoading
   }
 }
 
 
 function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators({
-    navigateTo:navigateTo
+    login:login
   }, dispatch) };
 }
+
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Application)
+)(Login)
