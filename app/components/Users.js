@@ -42,7 +42,7 @@ class Users extends Component {
             <td className='vert-align'>{el.email}</td>
             <td className='vert-align'>{moment(el.date).format('ll')}</td>
             <td className='vert-align' >
-              <button className='btn' onclick={this.props.delete.bind(this,el.id)} >delete</button>
+              <button className='btn' onClick={this.props.delete.bind(this,el.id)} >delete</button>
             </td>
           </tr>
         );

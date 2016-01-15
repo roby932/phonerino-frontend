@@ -90,10 +90,10 @@ class Products extends Component {
             <td className='vert-align'>{el.brand_name}</td>
             <td className='vert-align'>{el.first_name + ' '+ el.last_name}</td>
             <td className='vert-align'>{el.start_price}</td>
-            <td className='vert-align'>{el.buyout_price}</td>
+            <td className='vert-align'>{el.buyout_price || 'None'}</td>
             <td className='vert-align'>{moment(el.date).format('ll')}</td>
             <td className='vert-align' >
-              <button className='btn' onclick={this.props.delete.bind(this,el.id)} >delete</button>
+              <button className='btn' onClick={this.props.delete.bind(this,el.id)} >delete</button>
             </td>
           </tr>
         );

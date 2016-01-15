@@ -1,7 +1,8 @@
 import { createAction } from 'redux-actions';
 import { bindActionCreators } from 'redux';
 import Immutable from 'seamless-immutable';
-import {apiEditUser, apiLogin, apiGetBrands, apiAddProduct, apiGetUsers, apiGetPhones} from '../api';
+import {apiEditUser, apiLogin, apiGetBrands, apiAddProduct, apiGetUsers,
+  apiGetPhones, apiDeletePhone, apiDeleteUser} from '../api';
 import R from 'ramda';
 
 export const loginStart     = createAction('app/LOGIN_START');
@@ -211,3 +212,23 @@ export function orderBy(data) {
     }));
   }
 }
+
+export function deleteUser(data) {
+  return (dispatch, getState) => {
+    apiDeleteUser(data).then(
+      () => {dispatch(fetchUsers());alert('succes')},
+      () => {alert('error')}
+    )
+  }
+}
+
+export function deletePhone(data) {
+  console.log('de;ete')
+  return (dispatch, getState) => {
+    apiDeletePhone(data).then(
+      () => {dispatch(fetchPhones());alert('succes')},
+      () => {alert('error')}
+    )
+  }
+}
+

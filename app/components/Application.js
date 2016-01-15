@@ -17,12 +17,12 @@ var Application = (props) => {
     } else if(props.page === 'add') {
       return <AddProduct />;
     } else if(props.page === 'users'){
-      return <Users users={props.users} delete={()=>{}} loading={props.usersLoading} />;
+      return <Users users={props.users} delete={props.actions.deleteUser} loading={props.usersLoading} />;
     } else if(props.page === 'phones'){
       return <Products
         phones={props.phones}
         brands={props.brands}
-        delete={()=>{}}
+        delete={props.actions.deletePhone}
         loading={props.phonesLoading}
         setFilter={props.actions.setFilters}
         hasBuyout={props.actions.hasBuyout}

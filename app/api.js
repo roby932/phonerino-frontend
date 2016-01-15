@@ -33,3 +33,11 @@ export function apiAddProduct(params) {
   return  authenticatedRequest('post', `${baseUrl}/api/phone`)
     .send(params);
 }
+
+export function apiDeleteUser(id) {
+  return  authenticatedRequest('delete', `${baseUrl}/api/user/${id}`)
+}
+
+export function apiDeletePhone(id) {
+  return  authenticatedRequest('delete', `${baseUrl}/api/phone/${id}`)
+}
