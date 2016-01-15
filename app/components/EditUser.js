@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Header from './Header';
+import { retrieveLocalUser } from '../utils';
 
-class Login extends Component {
+class EditUser extends Component {
   constructor(props) {
     super(props);
-
+    let user = retrieveLocalUser();
+    console.log('render',props,user.body);
     this.state = {
-
+      user: user.body
     }
   }
 
@@ -19,50 +21,30 @@ class Login extends Component {
       <div className="col-md-12">
         <div className="col-md-6 col-md-offset-3">
           <div className="panel panel-default">
-            <div className="panel-heading">Login</div>
-            <div className="panel-body">
-              <form onSubmit={this.login.bind(this)}>
-                <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">Email address</label>
-                  <input ref={(ref) => this.loginEmail = ref} required
-                    type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="exampleInputPassword1">Password</label>
-                  <input ref={(ref) => this.loginPassword = ref} required
-                    type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-                </div>
-                <button type="submit" className="btn btn-default">Login</button>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-6 col-md-offset-3">
-          <div className="panel panel-default">
-            <div className="panel-heading">Sign up</div>
+            <div className="panel-heading">Edit</div>
             <div className="panel-body">
               <form onSubmit={this.signUp.bind(this)}>
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1">First Name</label>
-                  <input ref={(ref) => this.firstName = ref} required
+                  <input ref={(ref) => this.firstName = ref} required defaultValue={this.props.user.first_name}
                     type="text" className="form-control" id="exampleInputEmail1" placeholder="Name" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1">Last Name</label>
-                  <input ref={(ref) => this.lastName = ref} required
+                  <input ref={(ref) => this.lastName = ref} required defaultValue={this.props.user.last_name}
                     type="text" className="form-control" id="exampleInputEmail1" placeholder="Name" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1">Email address</label>
-                  <input ref={(ref) => this.email = ref} required
+                  <input ref={(ref) => this.email = ref} required defaultValue={this.props.user.email}
                     type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputPassword1">Password</label>
-                  <input ref={(ref) => this.password = ref} required
+                  <input ref={(ref) => this.password = ref} required defaultValue={this.props.user.password}
                     type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                 </div>
-                <button type="submit" className="btn btn-default">Sign up</button>
+                <button type="submit" className="btn btn-default">edit</button>
               </form>
             </div>
           </div>
@@ -71,21 +53,9 @@ class Login extends Component {
     );
   }
 
-  login(e) {
-    e.preventDefault();
-    this.props.actions.login('user/login',{
-      data: {
-        first_name: this.firstName.value,
-        last_name: this.lastName.value,
-        email: this.loginEmail.value,
-        password: this.loginPassword.value,
-      }
-    })
-  }
-
   signUp(e) {
     e.preventDefault();
-    this.props.actions.login('user',{
+    this.props.actions.edit(this.state.user.id,{
       data: {
         first_name: this.firstName.value,
         last_name: this.lastName.value,
@@ -97,5 +67,5 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default EditUser;
 

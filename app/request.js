@@ -13,7 +13,7 @@ export function authenticatedRequest(method, url) {
     return superagent(method, url)
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
-      .set('AuthorizationToken', user.auth_token);
+      .set('Authorization', user.body.auth_token);
   }
   return request;
 }

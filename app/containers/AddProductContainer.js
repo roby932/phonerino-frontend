@@ -2,21 +2,22 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Login from '../components/Login';
-import {login} from '../ducks/app';
+import AddProduct from '../components/AddProduct';
+import {addProduct} from '../ducks/app';
 
 
 function mapStateToProps(state) {
   return {
     page: state.router.currentPath,
-    loading: state.app.loginLoading
+    loading: state.app.loginLoading,
+    brands: state.app.brands
   }
 }
 
 
 function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators({
-    login: login
+    add: addProduct
   }, dispatch) };
 }
 
@@ -24,4 +25,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(AddProduct)

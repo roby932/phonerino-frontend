@@ -9,6 +9,16 @@ import router from './ducks/router';
 let initialState = Immutable({
   app: {
     page:'login',
+    isLogged: false,
+    loginLoading: false,
+    user: false,
+    phonesLoading: false,
+    usersLoading: false,
+    filterBrands: [],
+    max_price: 0,
+    has_buyout: false,
+    order: 'phones.id',
+
   },
   router: { }
 });

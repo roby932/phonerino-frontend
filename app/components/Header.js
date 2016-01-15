@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 var Header = (props) => {
+  console.log(props)
   let isLogged = () => {
     if(props.isLogged)
-      return <li><a href="#">Log out</a></li>
+      return <li><a href="#" onClick={props.logout}>Log out</a></li>
     else
       return <li><a href="#" onClick={props.navigate.bind(this,'login')}>Log in</a></li>
   }
 
   let addProduct = () => {
     if(props.isLogged)
-      return <li><a href="#">Add addProduct</a></li>
+      return <li><a href="#" onClick={props.navigate.bind(this,'add')}>Add Product</a></li>
+  }
+
+  let editUser = () => {
+    if(props.isLogged)
+      return <li><a href="#" onClick={props.navigate.bind(this,'editUser')}>Edit user</a></li>
   }
 
   return (
@@ -29,17 +35,13 @@ var Header = (props) => {
 
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
-            <li><a href="#" onClick={props.navigate.bind(this,'phone')}>Phones <span className="sr-only">(current)</span></a></li>
-
+            <li><a href="#" onClick={props.navigate.bind(this,'phones')}>Phones <span className="sr-only">(current)</span></a></li>
+            <li><a href="#" onClick={props.navigate.bind(this,'users')}>Users <span className="sr-only">(current)</span></a></li>
 
           </ul>
-          <form className="navbar-form navbar-left" role="search">
-            <div className="form-group">
-              <input type="text" className="form-control" placeholder="Search" />
-            </div>
-            <button type="submit" className="btn btn-default">Search</button>
-          </form>
+
           <ul className="nav navbar-nav navbar-right">
+            {editUser()}
             {addProduct()}
             {isLogged()}
           </ul>
